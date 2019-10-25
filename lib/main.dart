@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:storia/model/theme_model.dart';
-import 'package:storia/model/theme_model.dart' as ThemeModel;
+import 'package:storia/src/models/_theme_model.dart';
+import 'package:storia/src/models/_theme_model.dart' as ThemeModel;
 import "dart:math";
 
 void main() {
