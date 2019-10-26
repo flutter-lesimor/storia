@@ -11,7 +11,7 @@ class ThemeProvider {
     final response = await client.get('http://chatflow.ai:4001/talk/theme');
     print(response.body.toString());
     if(response.statusCode == 200){
-      return ThemeModel.fromJson(json.decode(response.body))
+      return ThemeModel.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to load themes');
     }

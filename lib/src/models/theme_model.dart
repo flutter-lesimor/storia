@@ -1,22 +1,27 @@
+import 'dart:math';
+
 class ThemeModel {
-  List<_Result> _results = [];
+  List<Theme> _results = [];
+  Random rnd = new Random();
 
   ThemeModel.fromJson(Map<String, dynamic> parasedJson) {
-    List<_Result> temp = [];
+    List<Theme> temp = [];
     for (int i = 0; i < parasedJson['results'].length; i++) {
-      _Result result = _Result(parasedJson['results'][i]);
+      Theme result = Theme(parasedJson['results'][i]);
       temp.add(result);
     }
     _results = temp;
   }
 
-  List<_Result> get results => _results;
+  List<Theme> get results => _results;
+  Theme get randomSample => randomListItem(_results);
+  dynamic randomListItem(List<dynamic> lst) => lst[rnd.nextInt(lst.length)];
 }
 
-class _Result {
+class Theme {
   String _id;
   String _question;
-  _Result(result) {
+  Theme(result) {
     _id = result['_id'];
     _question = result['question'];
   }
