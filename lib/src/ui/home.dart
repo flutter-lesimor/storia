@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import '../models/theme_model.dart';
 import '../blocs/themes_bloc.dart';
 
@@ -23,25 +23,23 @@ class _Home extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Storia'),
-        ),
-        body: Container(
+    return Container(
+        child: Container(
           child: StreamBuilder(
             stream: bloc.allThemes,
             builder: (context, AsyncSnapshot<ThemeModel> snapshot) {
               if (snapshot.hasData) {
                 return buildText(snapshot);
               }
-              return Center(child: CircularProgressIndicator());
+              return Center(child: CupertinoActivityIndicator());
             },
           ),
           padding: const EdgeInsets.symmetric(horizontal: 50.0),
           alignment: Alignment.center,
         ),
-        floatingActionButton: new FloatingActionButton(
-            child: new Icon(Icons.add_circle), onPressed: fabPressed));
+        // floatingActionButton: new FloatingActionButton(
+        //     child: new Icon(Icons.add_circle), onPressed: fabPressed)
+        );
   }
 
   void fabPressed() {
