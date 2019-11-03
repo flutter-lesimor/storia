@@ -24,22 +24,37 @@ class _Home extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Container(
-          child: StreamBuilder(
-            stream: bloc.allThemes,
-            builder: (context, AsyncSnapshot<ThemeModel> snapshot) {
-              if (snapshot.hasData) {
-                return buildText(snapshot);
-              }
-              return Center(child: CupertinoActivityIndicator());
-            },
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 50.0),
-          alignment: Alignment.center,
-        ),
-        // floatingActionButton: new FloatingActionButton(
-        //     child: new Icon(Icons.add_circle), onPressed: fabPressed)
-        );
+      // child: StreamBuilder(
+      //   stream: bloc.allThemes,
+      //   builder: (context, AsyncSnapshot<ThemeModel> snapshot) {
+      //     if (snapshot.hasData) {
+      //       return buildText(snapshot);
+      //     }
+      //     return Center(child: CupertinoActivityIndicator());
+      //   },
+      // ),
+      child: Column(children: <Widget>[
+        Expanded(
+            child: CupertinoButton(
+                child: Container(
+                    child: StreamBuilder(
+                  stream: bloc.allThemes,
+                  builder: (context, AsyncSnapshot<ThemeModel> snapshot) {
+                    if (snapshot.hasData) {
+                      return buildText(snapshot);
+                    }
+                    return Center(child: CupertinoActivityIndicator());
+                  },
+                )),
+                onPressed: null),
+            flex: 1),
+        Expanded(
+            child: CupertinoButton(child: Text('Update'), onPressed: fabPressed),
+            flex: 1)
+      ]),
+      padding: const EdgeInsets.symmetric(horizontal: 50.0),
+      alignment: Alignment.center,
+    );
   }
 
   void fabPressed() {
